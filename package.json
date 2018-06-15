@@ -13,7 +13,7 @@
     "url": "git+https://github.com/stevencharleshuang/node-chat-app.git"
   },
   "engines": }
-    "node": "^6.2.2"
+    "node": "9.11.1"
   },
   "author": "",
   "license": "ISC",
