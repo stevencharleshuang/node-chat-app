@@ -4,12 +4,16 @@
   "description": "Researching socketio",
   "main": "server.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stevencharleshuang/node-chat-app.git"
+  },
+  "engines": }
+    "node": "^6.2.2"
   },
   "author": "",
   "license": "ISC",
