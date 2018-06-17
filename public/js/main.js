@@ -7,6 +7,7 @@ socket.on('connect', () => {
   socket.emit('createEmail', {
     to: 'someone@test.com',
     text: 'sup, bo?',
+    from: socket.id,
     createdAt: timestamp,
   });
 });
