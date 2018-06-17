@@ -11,14 +11,26 @@ const publicPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicPath));
 
+const timestamp = Date.now();
+
 io.on('connection', (socket) => {
   console.log('>>> Server: New User Connected');
 
+  socket.emit('newEmail', {
+    from: 'test@test.com',
+    text: 'sup',
+    createdAt: timestamp,
+  });
+
+  socket.on('createEmail', (newEmail) => {
+    console.log('>>> Server: createEmail = ', newEmail)
+  });
+
   socket.on('disconnect', () => {
-    console.log('>>> Server: User was disconnected')
+    console.log('>>> Server: User was disconnected');
   })
 });
 
 server.listen(PORT, () => {
-  console.log(`Server is up port: ${PORT} env: ${app.get('env')}`);
+  console.log(`>>> Server is up port: ${PORT} env: ${app.get('env')}`);
 });
