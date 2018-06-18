@@ -16,14 +16,14 @@ const timestamp = Date.now();
 io.on('connection', (socket) => {
   console.log('>>> Server: New User Connected');
 
-  socket.emit('newEmail', {
-    from: 'test@test.com',
+  socket.emit('newMessage', {
+    from: socket.id,
     text: 'sup',
     createdAt: timestamp,
   });
 
-  socket.on('createEmail', (newEmail) => {
-    console.log('>>> Server: createEmail = ', newEmail)
+  socket.on('createMessage', (message) => {
+    console.log('>>> Server: createMessage = ', message)
   });
 
   socket.on('disconnect', () => {
