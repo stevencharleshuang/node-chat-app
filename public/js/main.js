@@ -4,11 +4,6 @@ const timestamp = Date.now();
 socket.on('connect', () => {
   console.log('<<< Client: Connected to socket');
 
-  socket.emit('createMessage', {
-    from: socket.id,
-    text: 'sup, bo?',
-    createdAt: timestamp,
-  });
 });
 
 socket.on('disconnect', () => {
