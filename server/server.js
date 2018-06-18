@@ -27,11 +27,11 @@ io.on('connection', (socket) => {
     callback({
       message: 'This is from the server'
     });
-    // socket.broadcast.emit('newMessage', {
-    //   origin: socket.id,
-    //   text: message.text,
-    //   createdAt: new Date().getTime()
-    // });
+
+    socket.on('createLocationMessage', (coords) => {
+      // console.log('>>> Server: this is coords: ', coords);
+      io.emit('newMessage', generateMessage('Admin', `${coords.lat}, ${coords.long}`))
+    });
 
   });
 
