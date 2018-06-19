@@ -11,22 +11,38 @@ socket.on('disconnect', () => {
 });
 
 socket.on('newMessage', (message) => {
-  // console.log('<<< Client: New Message: ', message);
   let formattedTime = moment(message.createdAt).format('h:mm a');
-  let li = $('<li></li>');
-  li.text(`${message.origin} ${formattedTime}: ${message.text}`);
-  $('#messages').append(li);
+  let template = $('#message-template').html();
+  let html = Mustache.render(template, {
+    text: message.text,
+    origin: message.origin,
+    createdAt: formattedTime
+  });
+  $('#messages').append(html);
+  // console.log('<<< Client: New Message: ', message);
+  // let li = $('<li></li>');
+  // li.text(`${message.origin} ${formattedTime}: ${message.text}`);
+  // $('#messages').append(li);
 });
 
 socket.on('newLocationMessage', (message) => {
   let formattedTime = moment(message.createdAt).format('h:mm a');
-  let li = $('<li></li>');
-  let a = $('<a target="_blank">My current location</a>');
+  let template = $('#location-message-template').html();
+  let html = Mustache.render(template, {
+    origin: message.origin,
+    url: message.url,
+    createdAt: formattedTime
+  });
 
-  li.text(`${message.origin} ${formattedTime}: `);
-  a.attr('href', message.url);
-  li.append(a);
-  $('#messages').append(li);
+  $('#messages').append(html);
+
+  // let li = $('<li></li>');
+  // let a = $('<a target="_blank">My current location</a>');
+
+  // li.text(`${message.origin} ${formattedTime}: `);
+  // a.attr('href', message.url);
+  // li.append(a);
+  // $('#messages').append(li);
 });
 
 $('#message-form').on('submit', (e) => {
