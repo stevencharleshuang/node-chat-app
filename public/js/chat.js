@@ -18,8 +18,16 @@ function scrollToBottom() {
 }
 
 socket.on('connect', () => {
-  console.log('<<< Client: Connected to socket');
-
+  // console.log('<<< Client: Connected to socket');
+  let params = $.deparam(window.location.search);
+  socket.emit('join', params, (err) => {
+    if (err) {
+      alert(err);
+      window.location.href = '/';
+    } else {
+      console.log('<<< Client: No Error');
+    }
+  });
 });
 
 socket.on('disconnect', () => {
