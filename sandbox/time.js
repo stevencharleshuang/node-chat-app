@@ -1,6 +1,9 @@
 const moment = require('moment');
-const date = moment();
 
+let createdAt = 1234;
+let date = moment(createdAt);
+let someTimestamp = moment().valueOf();
+console.log(someTimestamp);
 // Playing with moment manipulation
 // date.add(1, 'year').subtract(8, 'months');
 
