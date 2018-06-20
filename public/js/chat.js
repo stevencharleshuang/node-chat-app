@@ -25,13 +25,13 @@ socket.on('connect', () => {
       alert(err);
       window.location.href = '/';
     } else {
-      console.log('<<< Client: No Error');
+      // console.log('<<< Client: No Error');
     }
   });
 });
 
 socket.on('disconnect', () => {
-  console.log('<<< Client: Disconnected from server');
+  // console.log('<<< Client: Disconnected from server');
 });
 
 socket.on('updateUserList', (users) => {
